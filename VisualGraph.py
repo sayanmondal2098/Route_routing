@@ -47,7 +47,7 @@ class Graph :
         return self._data[0]
     
     def _getAllNodes(self):
-        for i in range(0,self._size):
+        for i in range(self._size):
             print(self._data[i]._getallNodeAttributes())
 
     def _updateWProbability(self,nodeno,W):
