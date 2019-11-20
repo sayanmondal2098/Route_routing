@@ -31,7 +31,7 @@ class Graph :
         return self._data[0]
     
     def _getAllNodes(self):
-        for i in range(0,2):
+        for i in range(0,self._size):
             print(self._data[i]._getallNodeAttributes())
 
 
