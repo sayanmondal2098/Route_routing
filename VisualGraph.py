@@ -8,6 +8,9 @@ class Graph :
             self._y = y
             self._z = z
 
+        def _getallNodeAttributes(self):
+            return (self._w,self._x,self._y,self._z)
+
     # ,_data=None,_size=None,_font=None,_sourcepos=None,_destination=None
     _size = 0
     def __init__(self):
@@ -24,10 +27,18 @@ class Graph :
     def _getLength(self):
         return self._size
 
+    def _getFirst(self):
+        return self._data[0]
+    
+    def _getAllNodes(self):
+        for i in range(0,2):
+            print(self._data[i]._getallNodeAttributes())
 
-G = Graph()
+
+G = Graph()              
 G._addNode(1,1,1,1)
 
 G._addNode(1,1,1,1)
 
 print(G._getLength())
+print(G._getAllNodes())
