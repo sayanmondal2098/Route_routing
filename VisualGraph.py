@@ -1,68 +1,45 @@
-import math
-import numpy
-import random 
+class Graph :
+    class _Node:
+        __slots__ = '_w','_x','_y','_z'
 
+        def __init__(self,w=None,x=None,y=None,z=None):
+            self._w = w
+            self._x = x
+            self._y = y
+            self._z = z
 
-class Node():
-    "This is a node creator with 4 probability in w,x,y and z dir ."
-    # w ,x,y,z is the probability in each direction connected in graph node
-    def __init__(self,nodename,w,x,y,z):
-        
-        self.w = w
-        self.x = x
-        self.y = y
-        self.z = z
+    # ,_data=None,_size=None,_font=None,_sourcepos=None,_destination=None
+    _size = 0
+    def __init__(self):
+        self._data = [None]*10
+        # self._size = 0
+        self._font = 0
+        self._sourcepos = 0
+        self._destination = 0
     
-    def PrintNode(self):   #print the probability of each dir
-        print(self.w,self.x,self.y,self.z)
+    def _addNode(self,w,x,y,z):
+        # if (self._size)==len(self._data):
+        #     self._resize(2*len(self.data))
+        # avail = (self._font + self._size)%len(self._data)
+        # avail = self._size
+        self._data[0] = self._Node(w,x,y,z)
+        self._size += 1
 
-    def GetW(self):      #Get Probalastic Value of W
-        return self.w
+    def _getLength(self):
+        return self._size
 
-    def GetX(self):     #Get Probalastic Value of W
-        return self.x
-
-    def GetY(self):    #Get Probalastic Value of W
-        return self.y
-
-    def GetZ(self):     #Get Probalastic Value of W
-        return self.z
-
-    def SetW(self,W):      #Get Probalastic Value of W
-        self.w = W
-    
-    def SetX(self,X):      #Get Probalastic Value of X
-        self.x = X
-
-    def SetY(self,Y):      #Get Probalastic Value of Y
-        self.y = Y
-
-    def SetZ(self,Z):      #Get Probalastic Value of Z
-        self.z = Z
+    def _resize(self,cap):
+        old = self._data
+        self._data = [None]*cap
+        walk = self._font
+        for k in range(self._size):
+            self._data[k]=old[walk]
+            walk = (1+walk)%len(old)
+            self._font = 0
 
 
-class Graph:
-    #Initilize the each node with 0 probability
-    W = 'LOL'
-    X = 'LOL'
-    Y = 'LOL'
-    Z = 'LOL'
-    def __init__(self ,nodename=None):
-        self.nodename = nodename or []
+Graph._addNode(1,1,1,1,1)
 
-    def PrintNode(self):   #print the probability of each dir
-        print(self.node.w,self.node.x,self.node.y,self.node.z)
-        
-    def SetW(W):      #Get Probalastic Value of W
-        Graph.W = W
-              # return self.node.w
+Graph._addNode(1,1,1,1,1)
 
-    def GetW(self):      #Get Probalastic Value of W
-        return self.node.w
-    # def PrintNode(self):
-    #     print(self.)
-
-Node('Nodename',2,3,4,5).PrintNode()
-# print(Node(1,1,1,1).__doc__)
-
-
+print(Graph._getLength())
