@@ -11,6 +11,22 @@ class Graph :
         def _getallNodeAttributes(self):
             return (self._w,self._x,self._y,self._z)
 
+        def _updateWProbability(self,W):
+            self._w = W
+            return (self._w,self._x,self._y,self._z)
+        
+        def _updateXProbability(self,X):
+            self._x = X
+            return (self._w,self._x,self._y,self._z)
+
+        def _updateYProbability(self,Y):
+            self._y = Y
+            return (self._w,self._x,self._y,self._z)
+
+        def _updateZProbability(self,Z):
+            self._z = Z
+            return (self._w,self._x,self._y,self._z)
+
     # ,_data=None,_size=None,_font=None,_sourcepos=None,_destination=None
     _size = 0
     def __init__(self):
@@ -34,6 +50,18 @@ class Graph :
         for i in range(0,self._size):
             print(self._data[i]._getallNodeAttributes())
 
+    def _updateWProbability(self,nodeno,W):
+        return self._data[nodeno-1]._updateWProbability(W)
+
+    def _updateXProbability(self,nodeno,X):
+        return self._data[nodeno-1]._updateXProbability(X)
+
+    def _updateYProbability(self,nodeno,Y):
+        return self._data[nodeno-1]._updateYProbability(Y)
+
+    def _updateZProbability(self,nodeno,Z):
+        return self._data[nodeno-1]._updateZProbability(Z)
+
 
 G = Graph()              
 G._addNode(1,1,1,1)
@@ -41,4 +69,11 @@ G._addNode(1,1,1,1)
 G._addNode(1,1,1,1)
 
 print(G._getLength())
+print(G._getAllNodes())
+
+G._updateWProbability(1,2)
+G._updateXProbability(1,2)
+G._updateYProbability(1,2)
+G._updateZProbability(1,2)
+
 print(G._getAllNodes())
