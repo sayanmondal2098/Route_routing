@@ -1,12 +1,15 @@
 class Graph :
     class _Node:
-        __slots__ = '_w','_x','_y','_z'
+        __slots__ = '_w','_x','_y','_z','_destination','_packet_queue'
 
-        def __init__(self,w=None,x=None,y=None,z=None):
+        def __init__(self,w=None,x=None,y=None,z=None,destination=None,packet_queue=[]):
             self._w = w
             self._x = x
             self._y = y
             self._z = z
+            self._destination = destination
+            self._packet_queue = []
+
 
         def _getallNodeAttributes(self):
             return (self._w,self._x,self._y,self._z)
@@ -37,7 +40,7 @@ class Graph :
         #     self._resize(2*len(self.data))
         # avail = (self._font + self._size)%len(self._data)
         # avail = self._size
-        self._data.append(self._Node(w,x,y,z))
+        self._data.append(self._Node(w,x,y,z,None,[1,2,5,8,11]))
         self._size += 1
 
     def _getLength(self):
