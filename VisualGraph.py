@@ -40,7 +40,7 @@ class Graph :
         #     self._resize(2*len(self.data))
         # avail = (self._font + self._size)%len(self._data)
         # avail = self._size
-        self._data.append(self._Node(w,x,y,z,None,[1,2,5,8,11]))
+        self._data.append(self._Node(w,x,y,z,None,[1,2,5,8,11])) #Destination = NOne and stack is empty 
         self._size += 1
 
     def _getLength(self):
