@@ -1,0 +1,4 @@
+generate 2-d graph
+configure node properties (including the probabilitie of each pass)
+declare packets
+configure packet passing over the nodes
