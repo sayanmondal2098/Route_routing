@@ -1,6 +1,9 @@
 generate 2-d graph
+
 configure node properties (including the probabilitie of each pass)
+
 declare packets as the packet will have a goal (target) destination
+
 configure packet passing over the nodes. the packets should comply with the decision of the node and pass to the nodes that the previous node tells to.
 Train the model by iteratively running this model and adjusting the weights. The node if passing the packet to the correct node should be rewarded and if passed to the incorrect node should be punished.
 Run required iterationds of the model before mating the genes and producing the next gen of the nodes.
