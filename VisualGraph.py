@@ -1,3 +1,10 @@
+class Packets:
+    def __init__(self):
+        self.PathList = {}  # To store graph: u -> (v,w)nodes to covered
+        self.coveredNodeList = {}    #To store covered node no
+
+
+
 class Graph :
     class _Node:
         __slots__ = '_w','_x','_y','_z','_destination','_packet_queue'
