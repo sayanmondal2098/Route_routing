@@ -1,6 +1,8 @@
 def probability(num,den): 
     if den==0: return 0
     return num/den
+
+    
 def matrixEdges(matrx,n):
     edges = dict()
     for i in range(n):
@@ -24,6 +26,8 @@ def matrixEdges(matrx,n):
     for pt1 in prob:
         for pt2 in prob[pt1]: print(pt1,"-",pt2,"Probability :",prob[pt1][pt2])
     #print(edges)
+
+
 n = int(input("Enter N : "))
 matrix = []
 val = 1
