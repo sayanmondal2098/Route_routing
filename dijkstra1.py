@@ -160,12 +160,15 @@ class Graph:
         path.reverse()
 
         print("----Path to reach {} from {}----".format(dest, src))
+        mylist = []
         for u in path:
             print("{}".format(u), end=" ")
             if u != dest:
                 print("-> ", end="")
-
+                mylist.append(u)
+        mylist.append(dest)
         print("\nTotal cost of path: ", cost)
+        print("The psth list is {}".format(mylist))
 
 
 if __name__ == "__main__":
