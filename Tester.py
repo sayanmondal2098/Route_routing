@@ -1,6 +1,9 @@
 import ProbabilityFunction
-import dijkstra1
+import dijkstra
 
+
+src = int(input("Enter node of packet Src : "))
+dest = int(input("Enter node of packet destination : "))
 
 matrix = []
 
@@ -9,8 +12,8 @@ edgeslist = ProbabilityFunction.matrixEdges(matrix,ProbabilityFunction.n)
 # print(edgeslist)
 
 
-graph = dijkstra1.Graph(ProbabilityFunction.n*ProbabilityFunction.n)
-
+graph = dijkstra.Graph(ProbabilityFunction.n*ProbabilityFunction.n)
+# graph = Graph()
 print("The Graph is (Src , Destination , weight)")
 for i in edgeslist:
     # graph.add_edge(i)
@@ -18,9 +21,13 @@ for i in edgeslist:
     v = i["pt2"]
     w = i["weight"]
     print(u,v,w)
-    graph.add_edge(u,v,w)
+    graph.addEdge(u,v,w)
 
-print("The Graph is ")
-# graph.show_graph()
-# graph.dijkstra(1)
-graph.show_path(0, 4)    
+
+
+print ("Shortest Path between %d and %d is " %(src, dest)), 
+l = graph.findShortestPath(src, dest) 
+print ("\nShortest Distance between %d and %d is %d " %(src, dest, l)), 
+
+
+# find_path(graph, 0, 4, cost_func=cost_func)

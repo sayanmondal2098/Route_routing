@@ -1,83 +1,98 @@
-import heapq
+''' Program to shortest path from a given source vertex s to 
+	a given destination vertex t. Expected time complexity 
+	is O(V+E)'''
+from collections import defaultdict 
+
+#This class represents a directed graph using adjacency list representation 
+class Graph: 
+
+	def __init__(self,vertices): 
+		self.V = vertices #No. of vertices 
+		self.V_org = vertices 
+		self.graph = defaultdict(list) # default dictionary to store graph 
+
+	# function to add an edge to graph 
+	def addEdge(self,u,v,w): 
+		if w == 1: 
+			self.graph[u].append(v) 
+		else: 
+			'''split all edges of weight 2 into two 
+			edges of weight 1 each. The intermediate 
+			vertex number is maximum vertex number + 1, 
+			that is V.'''
+			self.graph[u].append(self.V) 
+			self.graph[self.V].append(v) 
+			self.V = self.V + 1
+	
+	# To print the shortest path stored in parent[] 
+	def printPath(self, parent, j): 
+		Path_len = 1
+		if parent[j] == -1 and j < self.V_org : #Base Case : If j is source 
+			print (j), 
+			return 0 # when parent[-1] then path length = 0 
+		l = self.printPath(parent , parent[j]) 
+
+		#incerement path length 
+		Path_len = l + Path_len 
+
+		# print node only if its less than original node length. 
+		# i.e do not print any new node that has been added later 
+		if j < self.V_org : 
+			print (j), 
+
+		return Path_len 
+
+	''' This function mainly does BFS and prints the 
+		shortest path from src to dest. It is assumed 
+		that weight of every edge is 1'''
+	def findShortestPath(self,src, dest): 
+
+		# Mark all the vertices as not visited 
+		# Initialize parent[] and visited[] 
+		visited =[False]*(self.V) 
+		parent =[-1]*(self.V) 
+
+		# Create a queue for BFS 
+		queue=[] 
+
+		# Mark the source node as visited and enqueue it 
+		queue.append(src) 
+		visited[src] = True
+
+		while queue : 
+			
+			# Dequeue a vertex from queue 
+			s = queue.pop(0) 
+			
+			# if s = dest then print the path and return 
+			if s == dest: 
+				return self.printPath(parent, s) 
+				
+
+			# Get all adjacent vertices of the dequeued vertex s 
+			# If a adjacent has not been visited, then mark it 
+			# visited and enqueue it 
+			for i in self.graph[s]: 
+				if visited[i] == False: 
+					queue.append(i) 
+					visited[i] = True
+					parent[i] = s 
 
 
-def dijkstra(graph, start, end):
-    """Return the cost of the shortest path between vertexes start and end.
-    >>> dijkstra(G, "E", "C")
-    6
-    >>> dijkstra(G2, "E", "F")
-    3
-    >>> dijkstra(G3, "E", "F")
-    3
-    """
+# 
+# Create a graph given in the above diagram 
+# g = Graph(4) 
+# g.addEdge(0, 1, 2) 
+# g.addEdge(0, 2, 2) 
+# g.addEdge(1, 2, 1) 
+# g.addEdge(1, 3, 1) 
+# g.addEdge(2, 0, 1) 
+# g.addEdge(2, 3, 2) 
+# g.addEdge(3, 3, 2) 
 
-    heap = [(0, start)]  # cost from start node,end node
-    visited = set()
-    while heap:
-        (cost, u) = heapq.heappop(heap)
-        if u in visited:
-            continue
-        visited.add(u)
-        if u == end:
-            return cost
-        for v, c in graph[u]:
-            if v in visited:
-                continue
-            next = cost + c
-            heapq.heappush(heap, (next, v))
-    return -1
+# src = 0; dest = 3
+# print ("Shortest Path between %d and %d is " %(src, dest)), 
+# l = g.findShortestPath(src, dest) 
+# print ("\nShortest Distance between %d and %d is %d " %(src, dest, l)), 
 
-
-G = {
-    "A": [["B", 2], ["C", 5]],
-    "B": [["A", 2], ["D", 3], ["E", 1], ["F", 1]],
-    "C": [["A", 5], ["F", 3]],
-    "D": [["B", 3]],
-    "E": [["B", 4], ["F", 3]],
-    "F": [["C", 3], ["E", 3]],
-}
-
-r"""
-Layout of G2:
-E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
- \                                         /\
-  \                                        ||
-    ----------------- 3 --------------------
-"""
-G2 = {
-    "B": [["C", 1]],
-    "C": [["D", 1]],
-    "D": [["F", 1]],
-    "E": [["B", 1], ["F", 3]],
-    "F": [],
-}
-
-r"""
-Layout of G3:
-E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
- \                                         /\
-  \                                        ||
-    -------- 2 ---------> G ------- 1 ------
-"""
-G3 = {
-    "B": [["C", 1]],
-    "C": [["D", 1]],
-    "D": [["F", 1]],
-    "E": [["B", 1], ["G", 2]],
-    "F": [],
-    "G": [["F", 1]],
-}
-
-shortDistance = dijkstra(G, "E", "C")
-print(shortDistance)  # E -- 3 --> F -- 3 --> C == 6
-
-shortDistance = dijkstra(G2, "E", "F")
-print(shortDistance)  # E -- 3 --> F == 3
-
-shortDistance = dijkstra(G3, "E", "F")
-print(shortDistance)  # E -- 2 --> G -- 1 --> F == 3
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+#This code is contributed by Neelam Yadav 
