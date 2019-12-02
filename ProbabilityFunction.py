@@ -5,6 +5,7 @@ def probability(num,den):
     
 def matrixEdges(matrx,n):
     edges = dict()
+    mylist = []
     for i in range(n):
         for j in range(n):
             var = matrix[i][j]
@@ -24,16 +25,26 @@ def matrixEdges(matrx,n):
                 prob[pt1][pt2] = temp
                 prob[pt2][pt1] = temp
     for pt1 in prob:
-        for pt2 in prob[pt1]: print(pt1,"-",pt2,"Probability :",prob[pt1][pt2])
+        for pt2 in prob[pt1]: 
+            # print(pt1,"-",pt2,"Probability :",prob[pt1][pt2])
+            edges = {"pt1":pt1,
+                     "pt2":pt2,
+                     "weight": prob[pt1][pt2]
+                    }
+            mylist.append(edges)
+    return mylist
     #print(edges)
 
 
 n = int(input("Enter N : "))
 matrix = []
-val = 1
+val = 0
 for i in range(n):
     matrix.append([])
     for _ in range(n):
         matrix[i].append(val)
         val += 1 
-matrixEdges(matrix,n)
+# matrixEdges(matrix,n)
+
+# print("test")
+# print(matrixEdges(matrix,n))
