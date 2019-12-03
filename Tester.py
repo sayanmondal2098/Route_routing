@@ -26,8 +26,6 @@ for i in edgeslist:
 
 
 print ("Shortest Path between %d and %d is " %(src, dest)), 
-l = graph.findShortestPath(src, dest) 
-print ("\nShortest Distance between %d and %d is %d " %(src, dest, l)), 
+l = graph.findShortestPath(src, dest)   
 
-
-# find_path(graph, 0, 4, cost_func=cost_func)
+# print ("\nShortest Distance between %d and %d is %d " %(src, dest, l)), 
