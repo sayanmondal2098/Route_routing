@@ -4,8 +4,6 @@ import networkx as nx
 import ProbabilityFunction
 import dijkstra1
 
-
-
 matrix = []
 
 edgeslist = ProbabilityFunction.matrixEdges(matrix,ProbabilityFunction.n)
