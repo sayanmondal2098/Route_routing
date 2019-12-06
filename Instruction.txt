@@ -26,7 +26,7 @@ Updated intstructions on 6th dec.
 5. the following generations would follow the same methodology.
 
 Important points to consider:
-  1. mating of the nodes would be done with proper care. Ttwo edged nodes can only mate with two edged nodes and three edged nodes can only mate with three edged nodes and so on.
+  1. mating of the nodes would be done with proper care. Two edged nodes can only mate with two edged nodes and three edged nodes can only mate with three edged nodes and so on.
   2. Think a good point and a reason to introduce mutation.
   3. The positive reward and the negative penalty will be given in integers and not float value.
   4. While training (packet autonomously passing) there should be a threshold distance to cut off forever loop problem. this can be solved by calculating the total path of the packet it took to travel and comparing it with the longest distance in network. The longest distance in the network is sum of all the edges [total edge in a nxn grid = 2*n*(n-1)]. Condition can be put if (path.length(packet_id)> 2*n*(n-1)) then drop packet.
