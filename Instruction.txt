@@ -7,3 +7,28 @@ declare packets as the packet will have a goal (target) destination
 configure packet passing over the nodes. the packets should comply with the decision of the node and pass to the nodes that the previous node tells to.
 Train the model by iteratively running this model and adjusting the weights. The node if passing the packet to the correct node should be rewarded and if passed to the incorrect node should be punished.
 Run required iterationds of the model before mating the genes and producing the next gen of the nodes.
+
+
+
+
+#https://p5js.org/examples/ -> for animation 
+
+Test.py -> Networkx representation
+Tester.py -> Code - Shortest Path algo
+Test2.py -> Networkx dimention graph algo 
+
+
+Updated intstructions on 6th dec.
+1. Now the next thing to do is making the nodes(intelligent agents) of the network learn.
+2. The learning methof we'll apply is Genetic learning, but each generation will be using reinforced learning to gain or lose importance.
+3. For first generation : a stream of packets are generated and routed. For each correct routing and source sink pair, we reward the path nodes. For the first run take 1000 packets and run them iteratively for 20 iterations, rewarding and penalising the nodes. You will end up with nodes : value (+reward/-penalise). Use this to modify the genes of the next generation.
+4. The second generation starts with the updated probalbility vaulues of the nodes. Again 1000 packets (source:sink) pair. 20 Iterations, reinforce them for every move. save the results. Use them to modify the genes of the next generation.
+5. the following generations would follow the same methodology.
+
+Important points to consider:
+  1. mating of the nodes would be done with proper care. Two edged nodes can only mate with two edged nodes and three edged nodes can only mate with three edged nodes and so on.
+  2. Think a good point and a reason to introduce mutation.
+  3. The positive reward and the negative penalty will be given in integers and not float value.
+  4. While training (packet autonomously passing) there should be a threshold distance to cut off forever loop problem. this can be solved by calculating the total path of the packet it took to travel and comparing it with the longest distance in network. The longest distance in the network is sum of all the edges [total edge in a nxn grid = 2*n*(n-1)]. Condition can be put if (path.length(packet_id)> 2*n*(n-1)) then drop packet.
+  
+  
